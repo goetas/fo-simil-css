@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://goetas.com/fo/css" xmlns:fo="http://www.w3.org/1999/XSL/Format" elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:g="http://goetas.com/fo/css">
+    <import schemaLocation="http://svn.apache.org/repos/asf/xmlgraphics/fop/trunk/src/foschema/fop.xsd"  namespace="http://www.w3.org/1999/XSL/Format"></import>
+    <element name="css" type="g:css"></element>
+    
+    <complexType name="css">
+    	<sequence>
+    		<element name="rule" type="g:rule" maxOccurs="unbounded" minOccurs="0"></element>
+    	</sequence>
+    </complexType>
+
+    <complexType name="rule">
+    	<attribute name="match" type="string" use="optional"></attribute>
+    	<attribute name="css-match" type="string" use="optional"></attribute>
+    	
+     	<attributeGroup ref = "fo:block_properties"/>
+	      <attributeGroup ref = "fo:Aural_Properties_List"/>
+	      <attributeGroup ref = "fo:Border_Padding_and_Background_Properties_List"/>
+	      <attributeGroup ref = "fo:Font_Properties_List"/>
+	      <attributeGroup ref = "fo:Hyphenation_Properties_List"/>
+	      <attributeGroup ref = "fo:Margin_Properties_Block_List"/>
+	      <attributeGroup ref = "fo:Relative_Position_Properties_List"/>
+	      <attributeGroup ref = "fo:break_Properties_List"/>
+	      <attributeGroup ref = "fo:text_one_Properties_List"/>
+	      <attributeGroup ref = "fo:block_hyphenation_Properties_List"/>
+	      
+	      <attributeGroup ref = "fo:intrusion_displace_Properties_List"/>
+	      <attributeGroup ref = "fo:keep_Properties_List"/>
+	      <attributeGroup ref = "fo:line_height_Properties_List"/>
+	      
+	      <attributeGroup ref = "fo:inheritable_properties_List"/>
+    	
+    </complexType>
+
+    <element name="rules" type="g:rules"></element>
+    
+    <complexType name="rules">
+    	<attribute name="location" type="string" use="required"></attribute>
+    </complexType>
+
+    <attribute name="class" type="string"></attribute>
+</schema>
