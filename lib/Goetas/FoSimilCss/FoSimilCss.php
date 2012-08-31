@@ -43,15 +43,14 @@ class FoSimilCss {
 					$cssXpath->registerNamespace($prefix, $uri);
 				}
 			}	
-			
-			
+
 			if($rule->hasAttribute("match")){
-				$xpath = $rule->getAttribute("match");
+				$xpath = "//".$rule->getAttribute("match");
 			}else{
 				$xpath = CssSelector::toXPath($rule->getAttribute("css-match"));
 			}
 			
-			foreach ($domXpath->query("//$xpath") as $nodo){
+			foreach ($domXpath->query($xpath) as $nodo){
 				foreach ($rule->attributes as $attNode){
 					if($attNode->name!=="match" && $attNode->name!=="css-match"){
 						$nodo->setAttributeNode ($domXpath->document->importNode($attNode));
@@ -59,6 +58,7 @@ class FoSimilCss {
 				}
 			}
 		}
+
 	}
 	protected function getAllParentNs(DOMElement $element) {
 		$namespaces=array("fo"=> "http://www.w3.org/1999/XSL/Format");
