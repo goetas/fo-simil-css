@@ -42,7 +42,7 @@ Stylesheet example
     <!-- more complex XPath -->
     <css:rule 
         match="fo:table[@id='data']/fo:table-header/fo:table-row/fo:table-cell/fo:block"
-        border-bottom="thin solid red"
+        border-bottom="1pt solid red"
         font-weight="bold"        
     />
     
@@ -54,13 +54,13 @@ Stylesheet example
         font-size="10pt"      
     />
     <css:rule 
-        match="#header"
+        css-match="#header"
         font-size="xx-small"
         
     />  
     <css:rule 
-        match="fo|table#data > fo|table-header > fo|table-row > fo|table-cell > fo|block"
-        border-bottom="thin solid red"
+        css-match="fo|table#data > fo|table-header > fo|table-row > fo|table-cell > fo|block"
+        border-bottom="1pt solid red"
         font-weight="bold"        
     />
 </css:css>
