@@ -26,40 +26,27 @@ Stylesheet example
  xmlns:css="http://goetas.com/fo/css"
  xmlns:fo="http://www.w3.org/1999/XSL/Format"
  >
-    <!-- similar to CSS element selector (h1, div...) -->
-    <css:rule 
-        match="fo:flow"
-        font-family="sans-serif"  
-        font-size="10pt"      
-    />
-   
-    <!-- similar to CSS id selector (#header) -->
-    <css:rule 
-        match="*[@id='header']"
-        font-size="xx-small"
-        
-    />  
-    <!-- more complex XPath -->
-    <css:rule 
-        match="fo:table[@id='data']/fo:table-header/fo:table-row/fo:table-cell/fo:block"
-        border-bottom="1pt solid red"
-        font-weight="bold"        
-    />
-    
-    <!-- Same examples but using  **Symfony\Component\CssSelector\CssSelector** CSS selector engine -->
-    
+   <!-- elements -->
     <css:rule 
         css-match="fo|flow"
         font-family="sans-serif"  
         font-size="10pt"      
     />
+    <!-- id selector -->
     <css:rule 
         css-match="#header"
         font-size="xx-small"
         
-    />  
+    />
+    <!-- role selector (like @class) -->
     <css:rule 
-        css-match="fo|table#data > fo|table-header > fo|table-row > fo|table-cell > fo|block"
+        css-match=".header"
+        font-size="xx-small"
+        
+    />    
+    <!-- more complicated rule-->
+    <css:rule 
+        css-match="fo|table#data > fo|table-header.myclass > * > fo|table-cell > fo|block:last-child"
         border-bottom="1pt solid red"
         font-weight="bold"        
     />
