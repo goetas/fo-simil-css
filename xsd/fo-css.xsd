@@ -38,5 +38,4 @@
     	<attribute name="location" type="string" use="required"></attribute>
     </complexType>
 
-    <attribute name="class" type="string"></attribute>
 </schema>

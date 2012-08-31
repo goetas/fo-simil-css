@@ -32,11 +32,44 @@ class FoSimilCss {
 			$rules->parentNode->removeChild($rules);
 		}
 	}
+	/**
+	 * @see http://www.w3.org/TR/CSS2/cascade.html#specificity
+	 * @param array $rules
+	 * @return array
+	 */
+	protected function sortRules(array $rules) {
+		uasort($rules, function ($r1, $r2) {
+			
+			$s1 = $r1->getAttribute("css-match");
+			$s2 = $r2->getAttribute("css-match");
+			
+			if($s2 && $s2){
+				$a = 0*1000;
+				$b = substr_count($s1, "#")*100;
+				$c = (substr_count($s1, ".")*10)+(substr_count($s1, ":")*10);
+				$d = substr_count(preg_replace('/\s+/', " ", trim($s1)), " ")*1;
+				$c1 = $a+$b+$c+$d;
+				
+				
+				$a = 0*1000;
+				$b = substr_count($s2, "#")*100;
+				$c = (substr_count($s2, ".")*10)+(substr_count($s2, ":")*10);
+				$d = substr_count(preg_replace('/\s+/', " ", trim($s2)), " ")*1;
+				$c2 = $a+$b+$c+$d;
+				return $c1-$c2;
+			}
+			return 0;
+		});
+		return $rules;
+	}
 	protected function applyRules(DOMXPath $domXpath, DOMDocument $css) {
 		$cssXpath = new DOMXPath($css);
 		$cssXpath->registerNamespace("css", "http://goetas.com/fo/css");
 	
-		foreach ($cssXpath->query("/css:css/css:rule") as $rule){
+		
+		$rules = iterator_to_array($cssXpath->query("/css:css/css:rule"));
+		
+		foreach ($this->sortRules($rules) as $rule){
 							
 			foreach ($this->getAllParentNs($rule) as $uri){
 				if($prefix = $rule->lookupPrefix($uri)){
@@ -48,17 +81,21 @@ class FoSimilCss {
 				$xpath = "//".$rule->getAttribute("match");
 			}else{
 				$xpath = CssSelector::toXPath($rule->getAttribute("css-match"));
+				$xpath = str_replace("@class", "@role", $xpath);
 			}
 			
 			foreach ($domXpath->query($xpath) as $nodo){
 				foreach ($rule->attributes as $attNode){
 					if($attNode->name!=="match" && $attNode->name!=="css-match"){
-						$nodo->setAttributeNode ($domXpath->document->importNode($attNode));
+						if($nodo->hasAttributeNs($attNode->namespaceURI, $attNode->localName) && $attr = $nodo->getAttributeNodens($attNode->namespaceURI, $attNode->localName)){
+							$attr->value = $attNode->value;
+						}else{
+							$nodo->setAttributeNode ($domXpath->document->importNode($attNode));
+						}
 					}
 				}
 			}
 		}
-
 	}
 	protected function getAllParentNs(DOMElement $element) {
 		$namespaces=array("fo"=> "http://www.w3.org/1999/XSL/Format");
