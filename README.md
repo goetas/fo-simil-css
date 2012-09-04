@@ -4,7 +4,25 @@ fo-simil-css
 Simil CSS for XSL FO. Uses XPath instead of CSS selectors.
 
 To use CSS selectors install also https://github.com/symfony/CssSelector
+
 To use CSS Stylesheet install also https://github.com/sabberworm/PHP-CSS-Parser
+
+
+
+
+
+CSS Stylesheet example (requires https://github.com/sabberworm/PHP-CSS-Parser )
+
+```php
+
+$xml = new DOMDocument("1.0", "UTF-8");
+$xml->load("file.fo");
+
+$css = new FoSimilCss();
+$css->applyCss($xml, "style.css");
+
+```
+
 
 
 Example:
@@ -53,20 +71,6 @@ XML Stylesheet example
         font-weight="bold"        
     />
 </css:css>
-
-```
-
-
-
-CSS Stylesheet example (requires https://github.com/sabberworm/PHP-CSS-Parser )
-
-```php
-
-$xml = new DOMDocument("1.0", "UTF-8");
-$xml->load("file.fo");
-
-$css = new FoSimilCss();
-$css->applyCss($xml, "style.css");
 
 ```
 
