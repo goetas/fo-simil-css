@@ -1,4 +1,4 @@
-fo-simil-css
+# fo-simil-css
 ============
 
 Simil CSS for XSL FO. Uses XPath instead of CSS selectors.
@@ -11,7 +11,7 @@ To use CSS Stylesheet install also https://github.com/sabberworm/PHP-CSS-Parser 
 
 
 
-CSS Stylesheet example (requires https://github.com/sabberworm/PHP-CSS-Parser )
+### CSS Stylesheet example (requires https://github.com/sabberworm/PHP-CSS-Parser )
 
 ```php
 
@@ -39,7 +39,7 @@ $css->applyXmlCss($xml, "style.xml");
 
 
 
-XML Stylesheet example
+###  XML Stylesheet example
 
 ```xml
 <css:css
