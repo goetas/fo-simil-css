@@ -8,7 +8,7 @@ Requires also https://github.com/symfony/CssSelector.
 
 ### CSS Stylesheet example
 
-(requires https://github.com/sabberworm/PHP-CSS-Parser )
+(requires https://github.com/goetas/PHP-CSS-Parser )
 
 ```php
 
