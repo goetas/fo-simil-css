@@ -20,22 +20,6 @@ $css->applyCss($xml, "style.css");
 
 ```
 
-
-
-
-###  XML Stylesheet example
-
-
-```php
-
-$xml = new DOMDocument("1.0", "UTF-8");
-$xml->load("file.fo");
-
-$css = new FoSimilCss();
-$css->applyXmlCss($xml, "style.xml");
-
-```
-
 ```css
 @namespace fo "http://www.w3.org/1999/XSL/Format";
 
@@ -55,6 +39,19 @@ fo|block {
 
 It supports all selector types supported by *Symfony\CssSelector*
 
+
+###  XML Stylesheet example
+
+
+```php
+
+$xml = new DOMDocument("1.0", "UTF-8");
+$xml->load("file.fo");
+
+$css = new FoSimilCss();
+$css->applyXmlCss($xml, "style.xml");
+
+```
 
 
 ```xml
