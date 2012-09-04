@@ -46,25 +46,25 @@ $css->applyXmlCss($xml, "style.xml");
  >
    <!-- elements -->
     <css:rule 
-        css-match="fo|flow"
+        match="fo|flow"
         font-family="sans-serif"  
         font-size="10pt"      
     />
     <!-- id selector -->
     <css:rule 
-        css-match="#header"
+        match="#header"
         font-size="xx-small"
         
     />
     <!-- role selector (like @class) -->
     <css:rule 
-        css-match=".header"
+        match=".header"
         font-size="xx-small"
         
     />    
     <!-- more complicated rule-->
     <css:rule 
-        css-match="fo|table#data > fo|table-header.myclass > * > fo|table-cell > fo|block:last-child"
+        match="fo|table#data > fo|table-header.myclass > * > fo|table-cell > fo|block:last-child"
         border-bottom="1pt solid red"
         font-weight="bold"        
     />
