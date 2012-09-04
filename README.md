@@ -3,9 +3,9 @@ fo-simil-css
 
 Simil CSS for XSL FO. Uses XPath instead of CSS selectors.
 
-To use CSS selectors install also https://github.com/symfony/CssSelector
+To use CSS selectors install also https://github.com/symfony/CssSelector .
 
-To use CSS Stylesheet install also https://github.com/sabberworm/PHP-CSS-Parser
+To use CSS Stylesheet install also https://github.com/sabberworm/PHP-CSS-Parser .
 
 
 
