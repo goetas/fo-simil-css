@@ -3,15 +3,12 @@
 
 Simil CSS for XSL FO. Uses XPath instead of CSS selectors.
 
-To use CSS selectors install also https://github.com/symfony/CssSelector .
-
-To use CSS Stylesheet install also https://github.com/sabberworm/PHP-CSS-Parser .
+Requires also https://github.com/symfony/CssSelector.
 
 
+### CSS Stylesheet example
 
-
-
-### CSS Stylesheet example (requires https://github.com/sabberworm/PHP-CSS-Parser )
+(requires https://github.com/sabberworm/PHP-CSS-Parser )
 
 ```php
 
@@ -25,7 +22,9 @@ $css->applyCss($xml, "style.css");
 
 
 
-Example:
+
+###  XML Stylesheet example
+
 
 ```php
 
@@ -39,7 +38,6 @@ $css->applyXmlCss($xml, "style.xml");
 
 
 
-###  XML Stylesheet example
 
 ```xml
 <css:css
