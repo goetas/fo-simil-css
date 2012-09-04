@@ -36,6 +36,24 @@ $css->applyXmlCss($xml, "style.xml");
 
 ```
 
+```css
+@namespace fo "http://www.w3.org/1999/XSL/Format";
+
+/* element selector */
+fo|block {
+    border: solid 0.5pt black;
+}
+/* @id selector */
+#user {
+    width: 100%;
+}
+/* @role selector */
+.user {
+    width: 100%;
+}
+```
+
+It supports all selector types supported by *Symfony\CssSelector*
 
 
 
