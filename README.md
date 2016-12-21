@@ -1,14 +1,19 @@
 # fo-simil-css
 ============
 
-Simil CSS for XSL FO. Uses XPath instead of CSS selectors.
+### Install
 
-Requires also https://github.com/symfony/CssSelector.
+```
+
+composer require goetas/fo-simil-css
+
+```
+
+Simil CSS for XSL FO. Uses XPath instead of CSS selectors.
 
 
 ### CSS Stylesheet example
 
-(requires https://github.com/goetas/PHP-CSS-Parser )
 
 ```php
 
