@@ -97,7 +97,7 @@ class FoSimilCss
 
         foreach ($oCssDocument->getContents() as $decBlock) {
             if ($decBlock instanceof CssNamespace) {
-                $namespaces[$decBlock->getPrefix()] = $decBlock->getValue();
+                $namespaces[$decBlock->getPrefix()] = $decBlock->getUrl();
             }
         }
 
