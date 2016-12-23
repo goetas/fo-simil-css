@@ -9,7 +9,7 @@
     }
   ],
   "require": {
-    "symfony/css-selector": "^2.1|^3.0",
+    "symfony/css-selector": "^2.1",
     "sabberworm/php-css-parser": "^1.0"
   },
   "autoload": {
