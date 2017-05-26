@@ -14,7 +14,7 @@ class FoSimilCss
     public function applyXmlCss(DOMDocument $xml, $css)
     {
 
-        list($rules, $nampespaces) = $this->extractRulesFormXmlCss($css);
+        list($rules, $nampespaces) = $this->extractRulesFromXmlCss($css);
 
         $this->sortCssRules($rules);
 
@@ -31,13 +31,13 @@ class FoSimilCss
         $this->applyRulesToDocument($xml, $rules, $nampespaces);
     }
 
-    protected function extractRulesFormXmlCss($css)
+    protected function extractRulesFromXmlCss($css)
     {
 
         $cssDoc = new DOMDocument("1.0", "UTF-8");
         $cssDoc->load($css);
 
-        $cssXpath = new DOMXPath($css);
+        $cssXpath = new DOMXPath($cssDoc);
         $cssXpath->registerNamespace("css", "http://goetas.com/fo/css");
 
         $rules = array();
@@ -45,18 +45,15 @@ class FoSimilCss
 
         foreach ($cssXpath->query("/css:css/css:rule") as $xmlRule) {
             $rule = array();
-
-            foreach ($this->getAllParentNs($rule) as $uri) {
-                if ($prefix = $rule->lookupPrefix($uri)) {
-                    $namespaces[$prefix] = $uri;
-                }
+            foreach ($this->getAllParentNs($xmlRule) as $prefix => $uri) {
+                $namespaces[$prefix] = $uri;
             }
 
-            $rule["selector"] = $rule->getAttribute("match");
+            $rule["selector"] = $xmlRule->getAttribute("match");
             $rule["specificity"] = $this->calculateSpecificity($rule["selector"]);
             $rule["properties"] = array();
 
-            foreach ($rule->attributes as $attNode) {
+            foreach ($xmlRule->attributes as $attNode) {
                 if ($attNode->name !== "match") {
                     $rule["properties"][$attNode->name] = $attNode->value;
                 }
