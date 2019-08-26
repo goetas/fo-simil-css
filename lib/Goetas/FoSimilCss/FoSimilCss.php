@@ -6,7 +6,8 @@ use DOMElement;
 use DOMXPath;
 use Sabberworm\CSS\Parser;
 use Sabberworm\CSS\Property\CssNamespace;
-use Symfony\Component\CssSelector\CssSelector;
+use Symfony\Component\CssSelector\CssSelector as CSS;
+use Symfony\Component\CssSelector\CssSelectorConverter;
 
 class FoSimilCss
 {
@@ -130,8 +131,14 @@ class FoSimilCss
             $domXpath->registerNamespace($prefix ? $prefix : null, $value);
         }
         foreach ($rules as $rule) {
+            // Symfony 2.8+ API
+            if (class_exists('Symfony\Component\CssSelector\CssSelectorConverter')) {
+                $converter = new CssSelectorConverter();
 
-            $xpath = CssSelector::toXPath($rule["selector"]);
+                $xpath = $converter->toXPath($rule["selector"]);
+            } else {
+                $xpath = CSS::toXPath($rule["selector"]);
+            }
             $xpath = str_replace("@class", "@role", $xpath);
 
             foreach ($domXpath->query($xpath) as $nodo) {
